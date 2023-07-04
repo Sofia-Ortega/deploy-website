@@ -28,5 +28,14 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install
         run: npm ci
+
       - name: Deploy
-        run: npm run deploy
+        run: npm run build
+
+      - name: Deploy to Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal-token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+
+
